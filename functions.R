@@ -1,6 +1,5 @@
 library(ggplot2)
 library(reshape2)
-library(lubridate)
 
 make_population <- function(male_population_size, female_population_size, number_of_loci)
 {

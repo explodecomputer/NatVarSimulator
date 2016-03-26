@@ -37,6 +37,7 @@ shinyServer(function(input, output) {
 		)
 
 		f <- get_freqs(generations, fitness_effects)
+		print(head(f))
 
 		output$view <- renderGvis({
 			gvisMotionChart(
@@ -44,7 +45,7 @@ shinyServer(function(input, output) {
 				idvar ='mutation', 
 				xvar = 'fitness_effects',
 				yvar = 'freq', 
-				timevar= 'generation'
+				timevar= 'year'
 			)
 		})
 	})
