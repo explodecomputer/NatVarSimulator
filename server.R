@@ -39,13 +39,18 @@ shinyServer(function(input, output) {
 		f <- get_freqs(generations, fitness_effects)
 		print(head(f))
 
+		gvissettings <- '
+		{"iconType":"LINE","showTrails":false}
+		'
+
 		output$view <- renderGvis({
 			gvisMotionChart(
 				f, 
 				idvar ='mutation', 
 				xvar = 'fitness_effects',
 				yvar = 'freq', 
-				timevar= 'year'
+				timevar= 'year',
+				options=list(state=gvissettings)
 			)
 		})
 	})
