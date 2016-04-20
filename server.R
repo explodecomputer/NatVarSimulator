@@ -44,11 +44,12 @@ shinyServer(function(input, output) {
 		'
 
 		output$view <- renderGvis({
+
 			gvisMotionChart(
 				f, 
 				idvar ='mutation', 
 				xvar = 'fitness_effects',
-				yvar = 'freq', 
+				yvar = 'allele_frequency', 
 				timevar= 'year',
 				options=list(state=gvissettings)
 			)

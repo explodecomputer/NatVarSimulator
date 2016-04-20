@@ -14,10 +14,11 @@ make_population <- function(male_population_size, female_population_size, number
 make_mutations <- function(population, mutation_rate_per_generation_per_locus)
 {
 	nloci <- ncol(population$males1)
+	nid <- nrow(population$males1) + nrow(population$females1)
 
 	population <- lapply(population, function(x)
 	{
-		m <- min(1, mutation_rate_per_generation_per_locus / 2)
+		m <- min(1, mutation_rate_per_generation_per_locus / 2 / nid)
 		mutation_index <- as.logical(rbinom(length(x), 1, m))
 		if(any(mutation_index))
 		{
@@ -94,6 +95,8 @@ get_freqs <- function(generations, fitness_effects)
 	# a$date <- Sys.Date()
 	# a$date <- a$date + years(25 * (a$generation-1))
 	a$year <- 2016 + (a$generation - 1) * 25
+	names(a) <- c("mutation", "generation", "allele_frequency", "fitness_effects", "year")
+	a$mutation <- paste0("position_", formatC(a$mutation, width=2, format="d", flag="0"))
 	return(a)
 }
 
